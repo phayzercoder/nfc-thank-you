@@ -1,14 +1,15 @@
 <!DOCTYPE html>
-<html lang="cs">
+<html lang="en">
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>CasualStoreCZ</title>
+<title>Thank You for Your Order!</title>
 <style>
   * {
     margin: 0;
     padding: 0;
     box-sizing: border-box;
+    font-family: 'Montserrat', 'Segoe UI', sans-serif;
   }
 
   body {
@@ -16,10 +17,9 @@
     display: flex;
     justify-content: center;
     align-items: center;
-    background: linear-gradient(-45deg, #1a2a6c, #b21f1f, #1a2a6c, #1d976c);
+    background: linear-gradient(135deg, #1e3c72 0%, #2a5298 100%);
     background-size: 400% 400%;
     animation: gradientBG 15s ease infinite;
-    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
     color: white;
     overflow: hidden;
     position: relative;
@@ -33,87 +33,120 @@
   }
 
   .container {
-    max-width: 800px;
+    max-width: 900px;
     width: 100%;
     text-align: center;
     z-index: 2;
+    perspective: 1000px;
   }
 
   .card {
-    background: rgba(255, 255, 255, 0.15);
-    backdrop-filter: blur(10px);
-    border-radius: 20px;
-    padding: 40px;
-    box-shadow: 0 8px 32px rgba(0, 0, 0, 0.3);
-    border: 1px solid rgba(255, 255, 255, 0.18);
-    margin-bottom: 30px;
+    background: rgba(255, 255, 255, 0.12);
+    backdrop-filter: blur(12px);
+    border-radius: 25px;
+    padding: 50px 40px;
+    box-shadow: 0 15px 35px rgba(0, 0, 0, 0.4);
+    border: 1px solid rgba(255, 255, 255, 0.15);
+    margin-bottom: 35px;
+    transform-style: preserve-3d;
+    transition: transform 0.5s ease;
+  }
+
+  .card:hover {
+    transform: translateY(-10px) rotateX(5deg);
   }
 
   h1 {
-    font-size: 2.5rem;
-    margin-bottom: 25px;
-    text-shadow: 0 2px 10px rgba(0, 0, 0, 0.3);
+    font-size: 3.2rem;
+    margin-bottom: 30px;
+    text-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
+    letter-spacing: 1px;
+    font-weight: 700;
   }
 
   .message {
-    font-size: 1.8rem;
-    line-height: 1.6;
-    margin-bottom: 30px;
-    text-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+    font-size: 2.1rem;
+    line-height: 1.7;
+    margin-bottom: 40px;
+    text-shadow: 0 2px 8px rgba(0, 0, 0, 0.25);
+    max-width: 750px;
+    margin-left: auto;
+    margin-right: auto;
   }
 
   .nickname {
-    font-size: 1.4rem;
-    color: rgba(255, 255, 255, 0.9);
-    margin-top: 40px;
+    font-size: 1.8rem;
+    color: rgba(255, 255, 255, 0.85);
+    margin-top: 50px;
     font-weight: 600;
-    text-shadow: 0 2px 4px rgba(0, 0, 0, 0.3);
+    text-shadow: 0 2px 8px rgba(0, 0, 0, 0.3);
+    letter-spacing: 2px;
   }
 
   .lang-switcher {
     display: flex;
     justify-content: center;
-    gap: 20px;
+    flex-wrap: wrap;
+    gap: 15px;
     margin-top: 30px;
   }
 
   .lang-btn {
-    background: rgba(255, 255, 255, 0.2);
-    border: 2px solid rgba(255, 255, 255, 0.3);
+    background: rgba(255, 255, 255, 0.15);
+    border: 2px solid rgba(255, 255, 255, 0.25);
     color: white;
-    padding: 12px 25px;
+    padding: 15px 30px;
     border-radius: 50px;
-    font-size: 1.2rem;
+    font-size: 1.3rem;
     cursor: pointer;
-    transition: all 0.3s ease;
+    transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
     backdrop-filter: blur(5px);
     font-weight: 600;
+    letter-spacing: 0.5px;
+    min-width: 180px;
   }
 
   .lang-btn:hover {
-    background: rgba(255, 255, 255, 0.3);
-    transform: translateY(-3px);
-    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+    background: rgba(255, 255, 255, 0.25);
+    transform: translateY(-6px) scale(1.05);
+    box-shadow: 0 10px 25px rgba(0, 0, 0, 0.25);
   }
 
   .lang-btn.active {
-    background: rgba(255, 255, 255, 0.4);
-    border-color: white;
-    box-shadow: 0 0 15px rgba(255, 255, 255, 0.4);
+    background: rgba(255, 255, 255, 0.35);
+    border-color: #fff;
+    box-shadow: 0 0 25px rgba(255, 255, 255, 0.3);
+    transform: translateY(-3px);
   }
 
-  .hearts {
-    font-size: 3rem;
-    margin: 30px 0;
-    color: #ff4d94;
-    text-shadow: 0 0 20px rgba(255, 77, 148, 0.7);
-    animation: pulse 2s infinite;
+  .hearts-container {
+    margin: 40px 0;
+    position: relative;
+    height: 100px;
   }
 
-  @keyframes pulse {
-    0% { transform: scale(1); opacity: 0.8; }
-    50% { transform: scale(1.1); opacity: 1; }
-    100% { transform: scale(1); opacity: 0.8; }
+  .heart {
+    position: absolute;
+    font-size: 4.5rem;
+    color: #ff6b9d;
+    text-shadow: 0 0 30px rgba(255, 107, 157, 0.7);
+    animation: float 4s ease-in-out infinite;
+    top: 0;
+    left: 50%;
+    transform: translateX(-50%);
+    opacity: 0;
+  }
+
+  .heart:nth-child(1) { animation-delay: 0s; }
+  .heart:nth-child(2) { animation-delay: 1s; }
+  .heart:nth-child(3) { animation-delay: 2s; }
+
+  @keyframes float {
+    0% { transform: translate(-50%, 0) scale(0.5); opacity: 0; }
+    20% { opacity: 1; }
+    50% { transform: translate(-50%, -80px) scale(1.2); }
+    80% { opacity: 1; }
+    100% { transform: translate(-50%, -160px) scale(0.5); opacity: 0; }
   }
 
   .particles {
@@ -124,43 +157,72 @@
     height: 100%;
     z-index: 1;
     pointer-events: none;
+    overflow: hidden;
   }
 
   .particle {
     position: absolute;
-    background: rgba(255, 255, 255, 0.6);
+    background: rgba(255, 255, 255, 0.7);
     border-radius: 50%;
-    animation: float linear infinite;
+    animation: particleAnim linear infinite;
   }
 
-  @keyframes float {
+  @keyframes particleAnim {
     to {
-      transform: translateY(-100px) rotate(360deg);
+      transform: translateY(-100vh) rotate(360deg);
       opacity: 0;
     }
   }
 
+  .logo {
+    position: absolute;
+    top: 30px;
+    left: 30px;
+    font-size: 1.8rem;
+    font-weight: 800;
+    letter-spacing: 3px;
+    text-shadow: 0 2px 10px rgba(0, 0, 0, 0.3);
+    opacity: 0.9;
+  }
+
   @media (max-width: 768px) {
-    h1 { font-size: 2rem; }
-    .message { font-size: 1.4rem; }
-    .card { padding: 25px; }
-    .lang-btn { padding: 10px 20px; font-size: 1rem; }
+    h1 { font-size: 2.3rem; }
+    .message { font-size: 1.5rem; }
+    .card { padding: 30px 20px; }
+    .lang-btn { padding: 12px 20px; font-size: 1.1rem; min-width: 140px; }
+    .nickname { font-size: 1.4rem; }
+    .heart { font-size: 3.5rem; }
+  }
+
+  @media (max-width: 480px) {
+    h1 { font-size: 1.9rem; }
+    .message { font-size: 1.3rem; }
+    .lang-btn { width: 100%; max-width: 220px; }
   }
 </style>
 </head>
 <body>
 <div class="particles" id="particles"></div>
+<div class="logo">CasualStoreCZ</div>
 
 <div class="container">
   <div class="card">
-    <h1 id="title">Děkujeme za objednávku!</h1>
-    <div class="hearts">♥ ♥ ♥</div>
-    <p class="message" id="message">Doufáme, že věci, které jste si objednali, se vám budou líbit.</p>
+    <h1 id="title">Thank You for Your Order!</h1>
+    
+    <div class="hearts-container">
+      <div class="heart">♥</div>
+      <div class="heart">♥</div>
+      <div class="heart">♥</div>
+    </div>
+    
+    <p class="message" id="message">We truly appreciate your trust in us. We hope you'll love the items you've ordered!</p>
+    </p>
     <p class="nickname">~ CasualStoreCZ ~</p>
   </div>
   
   <div class="lang-switcher">
-    <button class="lang-btn active" data-lang="cs">Čeština</button>
+    <button class="lang-btn active" data-lang="en">English</button>
+    <button class="lang-btn" data-lang="cs">Čeština</button>
     <button class="lang-btn" data-lang="pl">Polski</button>
     <button class="lang-btn" data-lang="sk">Slovenčina</button>
   </div>
@@ -168,17 +230,21 @@
 
 <script>
   const translations = {
+    en: {
+      title: "Thank You for Your Order!",
+      message: "We truly appreciate your trust in us. We hope you'll love the items you've ordered!"
+    },
     cs: {
-      title: "Děkujeme za objednávku!",
-      message: "Doufáme, že věci, které jste si objednali, se vám budou líbit."
+      title: "Děkujeme za vaši objednávku!",
+      message: "Opravdu si vážíme vaší důvěry. Doufáme, že budete milovat věci, které jste si objednali!"
     },
     pl: {
-      title: "Dziękujemy za zamówienie!",
-      message: "Mamy nadzieję, że rzeczy, które zamówiłeś, będą Ci się podobać."
+      title: "Dziękujemy za Twoje zamówienie!",
+      message: "Naprawdę doceniamy Twoje zaufanie. Mamy nadzieję, że pokochasz przedmioty, które zamówiłeś!"
     },
     sk: {
-      title: "Ďakujeme za objednávku!",
-      message: "Dúfame, že veci, ktoré ste si objednali, sa vám budú páčiť."
+      title: "Ďakujeme za vašu objednávku!",
+      message: "Naozaj si vážime vašu dôveru. Dúfame, že budete milovať veci, ktoré ste si objednali!"
     }
   };
 
@@ -198,28 +264,37 @@
 
   function createParticles() {
     const particlesContainer = document.getElementById('particles');
-    const particleCount = 50;
+    const particleCount = 80;
     
     for (let i = 0; i < particleCount; i++) {
       const particle = document.createElement('div');
       particle.classList.add('particle');
       
-      const size = Math.random() * 10 + 2;
+      const size = Math.random() * 15 + 3;
       const posX = Math.random() * 100;
-      const duration = Math.random() * 10 + 5;
+      const duration = Math.random() * 20 + 10;
       const delay = Math.random() * 5;
+      const blur = Math.random() * 5;
       
       particle.style.width = `${size}px`;
       particle.style.height = `${size}px`;
       particle.style.left = `${posX}%`;
       particle.style.animationDuration = `${duration}s`;
       particle.style.animationDelay = `${delay}s`;
+      particle.style.filter = `blur(${blur}px)`;
+      particle.style.opacity = Math.random() * 0.7 + 0.3;
       
       particlesContainer.appendChild(particle);
     }
   }
 
-  window.onload = createParticles;
+  window.onload = function() {
+    createParticles();
+    
+    const nick = "CasualStoreCZ"; 
+    document.querySelector('.logo').textContent = nick;
+    document.querySelector('.nickname').innerHTML = `With gratitude,<br>${nick} Team`;
+  };
 </script>
 </body>
 </html>
