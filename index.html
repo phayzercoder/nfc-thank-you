@@ -223,7 +223,6 @@
     .nickname { font-size: 1.1rem; }
   }
 
-  /* Отключаем анимации для устройств с предпочтением reduced-motion */
   @media (prefers-reduced-motion: reduce) {
     * {
       animation: none !important;
@@ -300,7 +299,6 @@
       const particle = document.createElement('div');
       particle.classList.add('particle');
       
-      // Случайные параметры
       const size = Math.random() * 10 + 3;
       const posX = Math.random() * 100;
       const duration = Math.random() * 15 + 10;
@@ -322,7 +320,6 @@
     
     const nick = "CasualStoreCZ"; 
     document.querySelector('.logo').textContent = nick;
-    document.querySelector('.nickname').innerHTML = `With gratitude,<br>${nick} Team`;
     
     function setVH() {
       let vh = window.innerHeight * 0.01;
